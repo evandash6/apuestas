@@ -18,3 +18,4 @@ application/logs/*
 /vendor/
 .DS_Store
 tests/*
+writable/*
