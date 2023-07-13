@@ -30,7 +30,7 @@
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/7898ee300d.js" crossorigin="anonymous"></script>
     <script src="<?=base_url()?>js/sweetalert2.js"></script>
-    <script src="<?=base_url()?>app-assets/js/plugins.js"></script>
+    
 </head>
 <!-- END: Head-->
 
