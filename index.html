@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inicio</title>
+	<meta http-equiv = "refresh" content = "4; url = public/" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<style>
+	body{
+		color: #ffffff;
+    background-color: black;
+	}
+  .spinner {
+  background-image: linear-gradient(rgb(186, 66, 255) 35%,rgb(0, 225, 255));
+  width: 100px;
+  height: 100px;
+  animation: spinning82341 1.7s linear infinite;
+  border-radius: 50px;
+  filter: blur(1px);
+  box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
+}
+
+.spinner1 {
+  background-color: rgb(0, 0, 0);
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  filter: blur(10px);
+}
+
+@keyframes spinning82341 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+<body style="text-align:center !important">
+	<br><br><br>
+  <h1 style="font-size:50px">Sistema de Apuestas</h1>
+  <div style="left:46%;position:absolute">
+    <div class="spinner">
+        <div class="spinner1"></div>
+    </div>
+  </div>
+</body>
+</html>
