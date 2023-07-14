@@ -30,7 +30,7 @@
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/7898ee300d.js" crossorigin="anonymous"></script>
     <script src="<?=base_url()?>js/sweetalert2.js"></script>
-    
+    <script src="<?=base_url()?>app-assets/js/plugins.js"></script>
 </head>
 <!-- END: Head-->
 
@@ -66,7 +66,7 @@
         <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="accordion">
             <li class="navigation-header"><a class="navigation-header-text">Administración</a>
             <!-- <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_usuarios))?$m_usuarios:''?>" href="<?=base_url()?>administracion"><i class="material-icons">people</i><span class="menu-title">Usuarios</span></a></li> -->
-            <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_cata))?$m_cata:''?>" href="<?=base_url()?>administracion/catalogos"><i class="material-icons">assignment</i><span class="menu-title">Catálogos</span></a></li>
+            <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_cata))?$m_cata:''?>" href="<?=base_url()?>administracion/canales"><i class="material-icons">assignment</i><span class="menu-title">Canales</span></a></li>
             <li class="navigation-header"><a class="navigation-header-text">Menu</a>
             <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_apu))?$m_apu:''?>" href="<?=base_url()?>administracion/apuestas"><i class="material-icons">developer_board</i><span class="menu-title">Apuestas</span></a></li>
             <!-- <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_ava))?$m_ava:''?>" href="<?=base_url()?>home/avances"><i class="material-icons">flag</i><span class="menu-title">Avances y Evidencias</span></a></li> -->
