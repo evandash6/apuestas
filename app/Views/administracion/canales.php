@@ -21,7 +21,8 @@
 
     let columnas = [];
     let icons = function(cell, formatterParams){
-        return '<button ide="'+cell.getRow().getData().id+'" class="btx_edit btn btn-sm orange darken-1 mr-5"><i class="fa fa-edit"></i></button>';
+        return '<button ide="'+cell.getRow().getData().id+'" class="btx_edit btn btn-sm orange darken-1 mr-5"><i class="fa fa-edit"></i></button>'+
+        '<button ide="'+cell.getRow().getData().id+'" eve="'+cell.getRow().getData().nombre+'" class="btx_elim btn btn-sm red darken-1 mr-5"><i class="fa fa-trash"></i></button>';
     };
     
     columnas.push(
@@ -47,4 +48,31 @@
         let ide = $(this).attr('ide');
         location.href = '<?=base_url()?>administracion/edicion/'+ide;
     })
+
+    $('body').on('click','.btx_elim',function(){
+        let eve = $(this).attr('eve');
+        let ide = $(this).attr('ide');
+        confirm('Eliminación de Canal','<div style="text-align:center;width:100%">¿Deseas eliminar el canal <b>'+eve+'</b>, esto eliminara tambien las apuestas asociadas a este canal?</div>','info',function(){
+            api.get('<?=base_url()?>/administracion/elimina_canal/'+ide,true)
+            .done(function(data){
+                let res = JSON.parse(data);
+                console.log(res);
+                if(res.status == 200)
+                    alertf('Eliminación realizada','','success',function(){ 
+                        actualiza_tabla();
+                    })
+                else
+                alertf('Error al eliminar el canal','','error',function(){ 
+                    console.error(res.messages)
+                });
+            })
+            .fail(function(res){
+                console.error(JSON.parse(res).messages);
+            })
+        },
+        function(){
+            alert('Eliminación Cancelada')
+        })
+    })
+
 </script>

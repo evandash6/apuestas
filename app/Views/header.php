@@ -69,6 +69,7 @@
             <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_cata))?$m_cata:''?>" href="<?=base_url()?>administracion/canales"><i class="material-icons">assignment</i><span class="menu-title">Canales</span></a></li>
             <li class="navigation-header"><a class="navigation-header-text">Menu</a>
             <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_apu))?$m_apu:''?>" href="<?=base_url()?>administracion/apuestas"><i class="material-icons">developer_board</i><span class="menu-title">Apuestas</span></a></li>
+            <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_apuh))?$m_apuh:''?>" href="<?=base_url()?>administracion/apuestas_historial"><i class="material-icons">history_toggle_off</i><span class="menu-title">Historico Apuestas</span></a></li>
             <!-- <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_ava))?$m_ava:''?>" href="<?=base_url()?>home/avances"><i class="material-icons">flag</i><span class="menu-title">Avances y Evidencias</span></a></li> -->
         </ul>
         <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>

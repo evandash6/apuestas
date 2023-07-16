@@ -106,7 +106,7 @@ class Administracion extends Controller{
     }
  
     public function apuestas(){
-        $data['titulo'] = 'Apuestas';
+        $data['titulo'] = 'Apuestas Activas';
         $data['icono'] = 'developer_board';
         $data['m_apu'] = 'active';
         echo view("header",$data);
@@ -115,11 +115,27 @@ class Administracion extends Controller{
         echo view("footer");
     }
 
+    public function apuestas_historial(){
+        $data['titulo'] = 'Apuestas Cerradas';
+        $data['icono'] = 'developer_board';
+        $data['m_apuh'] = 'active';
+        echo view("header",$data);
+        echo view("administracion/apuestas_historial");
+        echo view("funciones");
+        echo view("footer");
+    }
+
     public function lista_apuestas(){
-        echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'1=1 ORDER BY id DESC'))->response;
+        echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado = "" ORDER BY id DESC'))->response;
+    }
+
+    public function lista_apuestas_historial(){
+        echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado != "" ORDER BY id DESC'))->response;
     }
 
     public function edicion_apuesta($id=null){
+        $session = session();
+        $data['fecha_evento'] = date('Y-m-d');
         if($id != ''){
             $data['titulo'] = 'Apuestas - Edición';
             $data['resultado'] = json_encode(json_decode($this->api->post('consulta_tabla',array('tabla'=>'apuestas','condicion[id]'=>$id))->response,true)['resultado'][0]);
@@ -130,6 +146,9 @@ class Administracion extends Controller{
         }
         $data['icono'] = 'developer_board';
         $data['m_apu'] = 'active';
+        if(isset($session->fecha_evento)){
+            $data['fecha_evento'] = $session->fecha_evento;
+        }        
         $data['deportes_opc'] = $this->api->post('crea_select',array('tabla'=>'deportes','condicion'=>'1=1 ORDER BY id'))['opciones'];
         $data['canales_opc'] = $this->api->post('crea_select',array('tabla'=>'canales','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         echo view("header",$data);
@@ -139,7 +158,8 @@ class Administracion extends Controller{
     }
 
     public function save_apuesta(){
-        // var_dump($_POST);
+        $session = session();
+        $session->set('fecha_evento',$_POST['fecha_evento']);
         if($_POST['id'] != ''){
             echo $this->api->post('actualizar/apuestas',array('datos'=>$_POST,'condicion[id]'=>$_POST['id']))->response;
         }
@@ -147,5 +167,13 @@ class Administracion extends Controller{
             unset($_POST['id']);
             echo $this->api->post('insertar/apuestas',$_POST)->response;
         }
+    }
+
+    public function elimina_apuesta($id){
+        echo $this->api->post('eliminar/apuestas',array('condicion[id]'=>$id))->response;
+    }
+
+    public function elimina_canal($id){
+        echo $this->api->post('eliminar/canales',array('condicion[id]'=>$id))->response;
     }
 }
