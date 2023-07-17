@@ -69,7 +69,7 @@
     async function cargando(t=0,fn=function(){},view=1){
         if(view==1){
             Swal.fire({
-            html: '<div class="row text-center"><div class="col-md-12"><img style="max-width:150px" src="<?=base_url()?>img/spinner.gif" class="img"></div><div class="col-md-12"><p style="font-size:20px"><b>Cargando..</b></p></div></div>',
+            html: '<div class="row text-center"><div class="col-md-12"><img style="max-width:150px" src="<?=base_url()?>img/spinner.gif" class="img"></div><div class="col-md-12"><p style="font-size:20px"><b id="mdl_txt_carga">Cargando..</b></p></div></div>',
             showConfirmButton: false,
             allowOutsideClick: false,
             allowEscapeKey: false

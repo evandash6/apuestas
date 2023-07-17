@@ -119,6 +119,7 @@ class Administracion extends Controller{
         $data['titulo'] = 'Apuestas Cerradas';
         $data['icono'] = 'developer_board';
         $data['m_apuh'] = 'active';
+        $data['canales_opc'] = $this->api->post('crea_select',array('tabla'=>'canales','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         echo view("header",$data);
         echo view("administracion/apuestas_historial");
         echo view("funciones");
@@ -129,8 +130,9 @@ class Administracion extends Controller{
         echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado = "" ORDER BY id DESC'))->response;
     }
 
-    public function lista_apuestas_historial(){
-        echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado != "" ORDER BY id DESC'))->response;
+    public function lista_apuestas_historial($ide=null){
+        $condicion = ($ide!=null)?' AND canal_id = '.$ide.'':'';
+        echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado != "" '.$condicion.' ORDER BY id DESC'))->response;
     }
 
     public function edicion_apuesta($id=null){
