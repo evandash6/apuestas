@@ -3,31 +3,31 @@
 <div class="row">
     <div class="col m6 s12">
         <label for="">Evento:</label>
-        <input type="text" name="evento" autocomplete="off">
+        <input type="text" name="evento" autocomplete="off" required>
     </div>
 </div>
 <div class="row mt-2">
     <div class="col m6 s6">
         <label for="">Canal:</label>
-        <select name="canal_id"><?=$canales_opc?></select>
+        <select name="canal_id" required><?=$canales_opc?></select>
     </div>
     <div class="col m6 s6">
         <label for="">Deporte:</label>
-        <select name="deportes_id"><?=$deportes_opc?></select>
+        <select name="deportes_id" required><?=$deportes_opc?></select>
     </div>
 </div>
 <div class="row mt-2">
     <div class="col m6 s5">
         <label for="">Pronostico:</label>
-        <input type="text" name="pronostico" autocomplete="off">
+        <input type="text" name="pronostico" autocomplete="off" required>
     </div>
     <div class="col m2 s3">
         <label for="">Cuota:</label>
-        <input type="number" name="cuota" class="text-center" step="0.01">
+        <input type="number" name="cuota" class="text-center" step="0.01" required>
     </div>
     <div class="col m2 s3">
         <label for="">Stake:</label>
-        <input type="number" name="stake" class="text-center">
+        <input type="number" name="stake" class="text-center" required>
     </div>
     <div class="col m2 s3">
         <label for="">Combinada:</label>
