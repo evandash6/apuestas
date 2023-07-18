@@ -1,7 +1,10 @@
 <link href="<?=base_url()?>css/tabulator.css" rel="stylesheet">
 <script type="text/javascript" src="<?=base_url()?>js/tabulator.js"></script>
 <div class="row">
-    <div class="col m4 offset-m8">
+    <div class="col m3 mt-4">
+        <h6 class="teal-text" id="txt_cantidad_reg"></h6>
+    </div>
+    <div class="col m4 offset-m5">
         <label for="">Filtro por Canal:</label>
         <select name="canales"><?=$canales_opc?></select>
     </div>
@@ -15,7 +18,7 @@
 
 
 <script>
-
+    var table;
     var frm_mini = '<form id="#frm_estatus"> <div class="row"> <div class="col m12"> <label for="">Resultado:</label> <select name="resultado"><option selected>Selecciona</option><option value="Acertada">Acertada</option><option value="Fallada">Fallada</option></select> </div> </div> <div class="row"> <div class="col m12 text-right"> <button class="btn teal">Guardar</button> </div> </div> </form>';
     function actualiza_tabla(ide=null){
         api.get('<?=base_url()?>administracion/lista_apuestas_historial/'+ide,false)
@@ -50,7 +53,7 @@
         {title:"Stake", field:"stake",headerFilter:"input",hozAlign:'center',width:100},
     );
 
-    var table = new Tabulator("#tabla_apuestas", {
+        table = new Tabulator("#tabla_apuestas", {
         layout:"fitData",
         columns:columnas,
         pagination:true, //enable pagination
@@ -60,6 +63,10 @@
 
     $(document).ready(function(){
         actualiza_tabla();
+
+        table.on("dataFiltered", function(filters,rows){
+            $('#txt_cantidad_reg').text("Total de Registros: "+rows.length);
+        });
     })
 
     $('body').on('change','select[name=canales]',function(){

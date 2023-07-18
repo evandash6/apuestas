@@ -1,7 +1,10 @@
 <link href="<?=base_url()?>css/tabulator.css" rel="stylesheet">
 <script type="text/javascript" src="<?=base_url()?>js/tabulator.js"></script>
 <div class="row">
-    <div class="col s12 text-right">
+    <div class="col m3">
+        <h6 class="teal-text" id="txt_cantidad_reg"></h6>
+    </div>
+    <div class="col m3 offset-m6 text-right">
         <button onclick="location.href='<?=base_url()?>administracion/edicion'" class="btn indigo">Nuevo Canal</button>
     </div>
 </div>
@@ -12,6 +15,8 @@
 </div>
 <script>
     
+    var table;
+
     function actualiza_tabla(){
         api.get('<?=base_url()?>administracion/lista_canales')
         .done(function(res){
@@ -32,7 +37,7 @@
         {title:"Observaciones", field:"observaciones", sorter:"string",hozAlign:'center',width:400}
     );
 
-    var table = new Tabulator("#tabla_canales", {
+    table = new Tabulator("#tabla_canales", {
         layout:"fitData",
         columns:columnas,
         pagination:true, //enable pagination
@@ -42,6 +47,9 @@
 
     $(document).ready(function(){
         actualiza_tabla();
+        table.on("dataFiltered", function(filters,rows){
+            $('#txt_cantidad_reg').text("Total de Registros: "+rows.length);
+        });
     })
 
     $('body').on('click','.btx_edit',function(){

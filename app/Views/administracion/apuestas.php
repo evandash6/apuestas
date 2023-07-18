@@ -20,6 +20,7 @@
         api.get('<?=base_url()?>administracion/lista_apuestas')
         .done(function(res){
             table.setData(JSON.parse(res).resultado);
+            console.log(table.getRows().length)
         })    
     }
 
