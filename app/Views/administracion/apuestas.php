@@ -2,7 +2,7 @@
 <script type="text/javascript" src="<?=base_url()?>js/tabulator.js"></script>
 <div class="row">
     <div class="col m12 text-right">
-        <button onclick="location.href='<?=base_url()?>administracion/edicion_apuesta'" class="btn teal">Nueva Apuestas</button>
+        <button onclick="location.href='<?=base_url()?>administracion/edicion_apuesta/1/'" class="btn teal">Nueva Apuestas</button>
     </div>
 </div>
 <div class="row mt-2">
@@ -26,7 +26,7 @@
 
     let columnas = [];
     let icons = function(cell, formatterParams){
-        return '<button onclick="location.href=\'<?=base_url()?>administracion/edicion_apuesta/'+cell.getRow().getData().id+'\'" class="btn btn-sm orange darken-1 mr-5"><i class="fa fa-edit"></i></button>' + 
+        return '<button onclick="location.href=\'<?=base_url()?>administracion/edicion_apuesta/1/'+cell.getRow().getData().id+'\'" class="btn btn-sm orange darken-1 mr-5"><i class="fa fa-edit"></i></button>' + 
         '<button ide="'+cell.getRow().getData().id+'" eve="'+cell.getRow().getData().evento+'" class="btx_elim btn btn-sm red darken-1 mr-5"><i class="fa fa-trash"></i></button>';
     };
     

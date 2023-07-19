@@ -93,7 +93,10 @@
                 console.log(res);
                 if(res.status == 201 || res.status == 200)
                     alertf('Cambios realizados','','success',function(){ 
-                        location.href = '<?=base_url()?>administracion/apuestas'
+                        if(<?=$tipo?> == 1)
+                            location.href = '<?=base_url()?>administracion/apuestas'
+                        else
+                            location.href = '<?=base_url()?>administracion/apuestas_historial'
                     })
                 else
                 alertf('','Error al guardar/actualizar el registro','error',function(){ 

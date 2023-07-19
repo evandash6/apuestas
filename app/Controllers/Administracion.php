@@ -135,7 +135,7 @@ class Administracion extends Controller{
         echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado != "" '.$condicion.' ORDER BY id DESC'))->response;
     }
 
-    public function edicion_apuesta($id=null){
+    public function edicion_apuesta($tipo,$id=null){
         $session = session();
         $data['fecha_evento'] = date('Y-m-d');
         if($id != ''){
@@ -151,6 +151,7 @@ class Administracion extends Controller{
         if(isset($session->fecha_evento)){
             $data['fecha_evento'] = $session->fecha_evento;
         }        
+        $data['tipo'] = $tipo;
         $data['deportes_opc'] = $this->api->post('crea_select',array('tabla'=>'deportes','condicion'=>'1=1 ORDER BY id'))['opciones'];
         $data['canales_opc'] = $this->api->post('crea_select',array('tabla'=>'canales','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         echo view("header",$data);

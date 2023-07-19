@@ -41,16 +41,21 @@
             res = 'Nulo';
         return res;
     };
+
+    let icons = function(cell, formatterParams){
+        return '<button onclick="location.href=\'<?=base_url()?>administracion/edicion_apuesta/2/'+cell.getRow().getData().id+'\'" class="btn btn-sm orange darken-1 mr-5"><i class="fa fa-edit"></i></button>';
+    };
     
     columnas.push(
-        {title:'Resultado', field:'acciones', formatter:result,hozAlign:'center',headerHozAlign:'center',width:110,headerSort:false},
-        {title:"Resultado", field:"resultado", sorter:"string",hozAlign:'center',width:120},
+        {title:'Acciones', formatter:icons,hozAlign:'center',headerHozAlign:'center',width:100},
+        {title:'Resultado', field:'resultado', formatter:result,hozAlign:'center',headerHozAlign:'center',width:110,headerSort:true},
         {title:"Canal", field:"canal", sorter:"string",hozAlign:'center',width:200},
         {title:"F. Evento", field:"fecha_evento",headerFilter:"input",hozAlign:'center',width:100},
         {title:"Evento", field:"evento", sorter:"string",headerFilter:"input",hozAlign:'center',width:240},
         {title:"Pronostico", field:"pronostico",headerFilter:"input",hozAlign:'center',width:240},
         {title:"Cuota", field:"cuota",headerFilter:"input",hozAlign:'center',width:100},
         {title:"Stake", field:"stake",headerFilter:"input",hozAlign:'center',width:100},
+        {title:"Combinada", field:"combinada",headerFilter:"input",hozAlign:'center',width:100},
     );
 
         table = new Tabulator("#tabla_apuestas", {
