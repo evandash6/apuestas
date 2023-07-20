@@ -48,19 +48,20 @@
     
     columnas.push(
         {title:'Acciones', formatter:icons,hozAlign:'center',headerHozAlign:'center',width:100},
-        {title:'Resultado', field:'resultado', formatter:result,hozAlign:'center',headerHozAlign:'center',width:110,headerSort:true},
-        {title:"Canal", field:"canal", sorter:"string",hozAlign:'center',width:200},
+        {title:'Resultado', field:'resultado',headerFilter:"input",formatter:result,hozAlign:'center',headerHozAlign:'center',width:110,headerSort:true},
         {title:"F. Evento", field:"fecha_evento",headerFilter:"input",hozAlign:'center',width:100},
         {title:"Evento", field:"evento", sorter:"string",headerFilter:"input",hozAlign:'center',width:240},
         {title:"Pronostico", field:"pronostico",headerFilter:"input",hozAlign:'center',width:240},
-        {title:"Cuota", field:"cuota",headerFilter:"input",hozAlign:'center',width:100},
-        {title:"Stake", field:"stake",headerFilter:"input",hozAlign:'center',width:100},
+        {title:"Cuota", field:"cuota",headerFilter:"input",hozAlign:'center',width:80},
+        {title:"Tipo", field:"deporte",headerFilter:"input",hozAlign:'center',width:80},
+        {title:"Stake", field:"stake",headerFilter:"input",hozAlign:'center',width:80},
         {title:"Combinada", field:"combinada",headerFilter:"input",hozAlign:'center',width:100},
     );
 
         table = new Tabulator("#tabla_apuestas", {
         layout:"fitData",
         columns:columnas,
+        movableRows: true,
         pagination:true, //enable pagination
         paginationMode:"local", //enable remote pagination
         paginationSize:40, //optional parameter to request a certain number of rows per page
