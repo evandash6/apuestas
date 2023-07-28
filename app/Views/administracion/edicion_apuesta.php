@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col m6 s12">
         <label for="">Evento:</label>
-        <input type="text" name="evento" autocomplete="off" required>
+        <input type="text" name="evento" required>
     </div>
 </div>
 <div class="row mt-2">
@@ -19,7 +19,7 @@
 <div class="row mt-2">
     <div class="col m6 s5">
         <label for="">Pronostico:</label>
-        <input type="text" name="pronostico" autocomplete="off" required>
+        <input type="text" name="pronostico" required>
     </div>
     <div class="col m2 s3">
         <label for="">Cuota:</label>
@@ -58,26 +58,34 @@
 <script>
 
     var obj = <?=$resultado?>;
+    
     $(document).ready(function(){
         $('input[name=evento]').focus();
         $('input[name=combinada]').val('NO');
         $('input[name=fecha_evento]').val('<?=$fecha_evento?>');
     })
 
-    $('input').each(function(index, element) {
-        let nombre = $(this).attr('name');
-        $(this).val(obj[nombre])
-    });
+    if(Object.keys(obj).length > 0){
+        $('input').each(function(index, element) {
+            let nombre = $(this).attr('name');
+            $(this).val(obj[nombre])
+        });
 
-    $('select').each(function(index, element) {
-        let nombre = $(this).attr('name');
-        $(this).val(obj[nombre])
-    });
+        $('select').each(function(index, element) {
+            let nombre = $(this).attr('name');
+            $(this).val(obj[nombre])
+        });
 
-    $('textarea').each(function(index, element) {
-        let nombre = $(this).attr('name');
-        $(this).html(obj[nombre])
-    });
+        $('textarea').each(function(index, element) {
+            let nombre = $(this).attr('name');
+            $(this).html(obj[nombre])
+        });
+    }
+    else{
+        $('select[name=canal_id]').val(<?=$canal_id?>);
+        $('select[name=deportes_id]').val(<?=$deportes_id?>);
+    }
+    
 
     $('body').on('click','.btx_save',function(e){
         e.stopPropagation();

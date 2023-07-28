@@ -150,7 +150,9 @@ class Administracion extends Controller{
         $data['m_apu'] = 'active';
         if(isset($session->fecha_evento)){
             $data['fecha_evento'] = $session->fecha_evento;
-        }        
+        }       
+        $data['canal_id']  = (isset($session->canal_id))?$session->canal_id:'';
+        $data['deportes_id']  = (isset($session->deportes_id))?$session->deportes_id:'';
         $data['tipo'] = $tipo;
         $data['deportes_opc'] = $this->api->post('crea_select',array('tabla'=>'deportes','condicion'=>'1=1 ORDER BY id'))['opciones'];
         $data['canales_opc'] = $this->api->post('crea_select',array('tabla'=>'canales','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
@@ -163,6 +165,8 @@ class Administracion extends Controller{
     public function save_apuesta(){
         $session = session();
         $session->set('fecha_evento',$_POST['fecha_evento']);
+        $session->set('canal_id',$_POST['canal_id']);
+        $session->set('deportes_id',$_POST['deportes_id']);
         if($_POST['id'] != ''){
             echo $this->api->post('actualizar/apuestas',array('datos'=>$_POST,'condicion[id]'=>$_POST['id']))->response;
         }
