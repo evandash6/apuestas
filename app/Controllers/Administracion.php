@@ -183,4 +183,15 @@ class Administracion extends Controller{
     public function elimina_canal($id){
         echo $this->api->post('eliminar/canales',array('condicion[id]'=>$id))->response;
     }
+
+    public function analisis(){
+        $data['titulo'] = 'Analisis Básico';
+        $data['icono'] = 'insert_chart';
+        $data['m_ana'] = 'active';
+        $data['datos'] = $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','campos'=>'canal,resultado,cuota,pronostico,combinada,deporte'))->response;
+        echo view("header",$data);
+        echo view("administracion/analisis");
+        echo view("funciones");
+        echo view("footer");
+    }
 }

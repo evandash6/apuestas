@@ -65,12 +65,11 @@
         </div>
         <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="accordion">
             <li class="navigation-header"><a class="navigation-header-text">Administración</a>
-            <!-- <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_usuarios))?$m_usuarios:''?>" href="<?=base_url()?>administracion"><i class="material-icons">people</i><span class="menu-title">Usuarios</span></a></li> -->
             <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_cata))?$m_cata:''?>" href="<?=base_url()?>administracion/canales"><i class="material-icons">assignment</i><span class="menu-title">Canales</span></a></li>
             <li class="navigation-header"><a class="navigation-header-text">Menu</a>
             <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_apu))?$m_apu:''?>" href="<?=base_url()?>administracion/apuestas"><i class="material-icons">developer_board</i><span class="menu-title">Apuestas</span></a></li>
             <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_apuh))?$m_apuh:''?>" href="<?=base_url()?>administracion/apuestas_historial"><i class="material-icons">history_toggle_off</i><span class="menu-title">Historico Apuestas</span></a></li>
-            <!-- <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_ava))?$m_ava:''?>" href="<?=base_url()?>home/avances"><i class="material-icons">flag</i><span class="menu-title">Avances y Evidencias</span></a></li> -->
+            <li class="bold"><a class="waves-effect waves-cyan <?=(isset($m_ana))?$m_ana:''?>" href="<?=base_url()?>administracion/analisis"><i class="material-icons">insert_chart</i><span class="menu-title">Analisis Básico</span></a></li>
         </ul>
         <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
     </aside>
