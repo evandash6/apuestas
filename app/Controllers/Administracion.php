@@ -127,7 +127,7 @@ class Administracion extends Controller{
     }
 
     public function lista_apuestas(){
-        echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado = "" ORDER BY id DESC'))->response;
+        echo $this->api->post('consulta_tabla',array('tabla'=>'vw_apuestas','condicion'=>'resultado = "" OR resultado = "Selecciona" ORDER BY id DESC'))->response;
     }
 
     public function lista_apuestas_historial($ide=null){
