@@ -167,6 +167,7 @@ class Administracion extends Controller{
         $session->set('fecha_evento',$_POST['fecha_evento']);
         $session->set('canal_id',$_POST['canal_id']);
         $session->set('deportes_id',$_POST['deportes_id']);
+        $_POST['pronostico'] = strtolower($_POST['pronostico']);
         if($_POST['id'] != ''){
             echo $this->api->post('actualizar/apuestas',array('datos'=>$_POST,'condicion[id]'=>$_POST['id']))->response;
         }

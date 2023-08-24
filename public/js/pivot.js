@@ -1450,8 +1450,8 @@
             var left, ref2, top;
             ref2 = $(e.currentTarget).position(), left = ref2.left, top = ref2.top;
             return valueList.css({
-              left: left + 10,
-              top: top + 10
+              left: left + 250,
+              top: top + 190
             }).show();
           });
           attrElem = $("<li>").addClass("axis_" + i).append($("<span>").addClass('pvtAttr').text(attr).data("attrName", attr).append(triangleLink));
