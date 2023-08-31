@@ -137,14 +137,15 @@ class Administracion extends Controller{
 
     public function edicion_apuesta($tipo,$id=null){
         $session = session();
-        $data['fecha_evento'] = date('Y-m-d');
         if($id != ''){
             $data['titulo'] = 'Apuestas - Edición';
             $data['resultado'] = json_encode(json_decode($this->api->post('consulta_tabla',array('tabla'=>'apuestas','condicion[id]'=>$id))->response,true)['resultado'][0]);
+            $data['fecha_evento'] = json_decode($data['resultado'],true)['fecha_evento'];
         }
         else{
             $data['titulo'] = 'Apuestas - Nueva';
             $data['resultado'] = json_encode(array());
+            $data['fecha_evento'] = date('Y-m-d');
         }
         $data['icono'] = 'developer_board';
         $data['m_apu'] = 'active';
