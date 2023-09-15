@@ -13,6 +13,7 @@
 <script>
     var pivot;
     var obj = <?=$datos?>.resultado;
+    console.log(obj);
     var renderers = $.extend($.pivotUtilities.renderers,$.pivotUtilities.plotly_renderers);
     // var obj= '[{canal:2,id:34,stake:4},{canal:22,id:334,stake:5}]';
 
