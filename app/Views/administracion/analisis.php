@@ -6,20 +6,33 @@
 <script src='<?=base_url()?>js/d3.min.js'></script>
 <script src='<?=base_url()?>js/jquery-ui.min.js'></script>
 <div class="row">
+    <div class="col-md-12 text-right">
+        <button type="button" onclick="actualizar_tabla()" class="btn teal">Actualizar Datos</button>
+    </div>
+</div>
+<div class="row mt-3">
     <div class="col m12">
         <div id="tabla_apuestas"></div>
     </div>
 </div>
 <script>
     var pivot;
-    var obj = <?=$datos?>.resultado;
+    var obj = '';
     console.log(obj);
     var renderers = $.extend($.pivotUtilities.renderers,$.pivotUtilities.plotly_renderers);
     // var obj= '[{canal:2,id:34,stake:4},{canal:22,id:334,stake:5}]';
 
+    function actualizar_tabla(){
+        api.get('<?=base_url()?>administracion/estadistica')
+        .done(function(res){
+            obj = JSON.parse(res).resultado
+            console.log(obj);
+            $("#tabla_apuestas").pivotUI(obj,{renderers});
+        })         
+    }
+
     $(document).ready(function(){
-        console.log(obj);
-        $("#tabla_apuestas").pivotUI(obj,{renderers});
+        actualizar_tabla();
     })
 
 </script>
