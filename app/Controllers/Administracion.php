@@ -190,7 +190,7 @@ class Administracion extends Controller{
         $data['titulo'] = 'Analisis Básico';
         $data['icono'] = 'insert_chart';
         $data['m_ana'] = 'active';
-        $data['datos'] = $this->api->post('query',array('query'=>'SELECT canal,resultado,cuota,pronostico,combinada,deporte FROM vw_apuestas'))->response;
+        $data['datos'] = $this->api->post('query',array('query'=>'SELECT * FROM vw_apuestas'))->response;
         echo view("header",$data);
         echo view("administracion/analisis");
         echo view("funciones");
