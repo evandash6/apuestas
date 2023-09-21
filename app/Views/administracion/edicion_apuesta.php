@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col m6 s12">
         <label for="">Evento:</label>
-        <input type="text" name="evento" required>
+        <input type="text" name="evento" required value="Generico">
     </div>
 </div>
 <div class="row mt-2">
@@ -36,12 +36,12 @@
 </div>
 <div class="row mt-2">
     <div class="col m3 s6">
-        <label for="">Resultado:</label>
-        <select name="resultado"><option selected>Selecciona</option><option value="Acertada">Acertada</option><option value="Fallada">Fallada</option><option value="Nulo">Nulo</option></select>
-    </div>
-    <div class="col m3 s6">
         <label for="">Fecha Evento:</label>
         <input type="date" name="fecha_evento">
+    </div>
+    <div class="col m3 s6">
+        <label for="">Resultado:</label>
+        <select name="resultado"><option selected>Selecciona</option><option value="Acertada">Acertada</option><option value="Fallada">Fallada</option><option value="Nulo">Nulo</option></select>
     </div>
     <div class="col m6 s12">
         <label for="">Observaciones:</label>
