@@ -196,7 +196,7 @@ class Administracion extends Controller{
         echo view("footer");
     }
 
-    public function estadistica(){
-        echo $this->api->post('query',array('query'=>'SELECT * FROM vw_apuestas'))->response;
+    public function estadistica($tabla){
+        echo $this->api->post('query',array('query'=>'SELECT * FROM '.$tabla))->response;
     }
 }
