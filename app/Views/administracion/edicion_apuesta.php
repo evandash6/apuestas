@@ -1,5 +1,7 @@
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <form id="frm_apuesta">
     <input type="hidden" name="id">
+    <input name="deportes_id" type="hidden" value="1">
 <div class="row">
     <div class="col m6 s12">
         <label for="">Evento:</label>
@@ -11,16 +13,13 @@
         <label for="">Canal:</label>
         <select name="canal_id" required><?=$canales_opc?></select>
     </div>
-    <div class="col m6 s6">
-        <label for="">Deporte:</label>
-        <select name="deportes_id" required><?=$deportes_opc?></select>
+    <div class="col m6 s5">
+        <label for="">Pronostico:</label>
+        <div id="select"></div>
     </div>
 </div>
 <div class="row mt-2">
-    <div class="col m6 s5">
-        <label for="">Pronostico:</label>
-        <input type="text" name="pronostico" required>
-    </div>
+    
     <div class="col m2 s3">
         <label for="">Cuota:</label>
         <input type="number" name="cuota" class="text-center" step="0.01" required>
@@ -31,10 +30,8 @@
     </div>
     <div class="col m2 s3">
         <label for="">Combinada:</label>
-        <input type="text" name="combinada" class="text-center">
+        <input type="text" name="combinada" class="text-center" required>
     </div>
-</div>
-<div class="row mt-2">
     <div class="col m3 s6">
         <label for="">Fecha Evento:</label>
         <input type="date" name="fecha_evento">
@@ -43,7 +40,9 @@
         <label for="">Resultado:</label>
         <select name="resultado"><option selected>Selecciona</option><option value="Acertada">Acertada</option><option value="Fallada">Fallada</option><option value="Nulo">Nulo</option></select>
     </div>
-    <div class="col m6 s12">
+</div>
+<div class="row mt-2">
+    <div class="col m12 s12">
         <label for="">Observaciones:</label>
         <textarea class="materialize-textarea" name="observaciones"></textarea>
     </div>
@@ -60,7 +59,9 @@
     var obj = <?=$resultado?>;
     
     $(document).ready(function(){
-        $('input[name=evento]').focus();
+        $('#select').html('<select name="pronostico" class="select2" style="position: absolute;width: 100%;heigth:40px !important"><?=$pronosticos?></select>');
+        $('.select2').select2();
+        $('.select2').focus();
     })
 
     if(Object.keys(obj).length > 0){

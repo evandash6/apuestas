@@ -157,6 +157,7 @@ class Administracion extends Controller{
         $data['tipo'] = $tipo;
         $data['deportes_opc'] = $this->api->post('crea_select',array('tabla'=>'deportes','condicion'=>'1=1 ORDER BY id'))['opciones'];
         $data['canales_opc'] = $this->api->post('crea_select',array('tabla'=>'canales','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
+        $data['pronosticos'] = $this->api->post('crea_select',array('tabla'=>'vw_cpronosticos','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         echo view("header",$data);
         echo view("administracion/edicion_apuesta");
         echo view("funciones");

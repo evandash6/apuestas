@@ -22,6 +22,7 @@
     <!-- END: Page Level CSS-->
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>/app-assets/css/custom/custom.css">
+    <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/select2.css">
     <!-- END: Custom CSS-->
     <!-- BEGIN VENDOR JS-->
     <script src="<?=base_url()?>app-assets/js/vendors.min.js"></script>
