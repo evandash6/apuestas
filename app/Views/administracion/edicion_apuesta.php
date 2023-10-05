@@ -31,7 +31,7 @@
     </div>
     <div class="col m2 s3">
         <label for="">Combinada:</label>
-        <input type="text" name="combinada" class="text-center" value="NO">
+        <input type="text" name="combinada" class="text-center">
     </div>
 </div>
 <div class="row mt-2">
@@ -61,13 +61,12 @@
     
     $(document).ready(function(){
         $('input[name=evento]').focus();
-        $('input[name=combinada]').val('NO');
-        $('input[name=fecha_evento]').val('<?=$fecha_evento?>');
     })
 
     if(Object.keys(obj).length > 0){
         $('input').each(function(index, element) {
             let nombre = $(this).attr('name');
+            console.log(nombre+':'+obj[nombre])
             $(this).val(obj[nombre])
         });
 
