@@ -34,7 +34,7 @@
     </div>
     <div class="col m3 s6">
         <label for="">Fecha Evento:</label>
-        <input type="date" name="fecha_evento">
+        <input type="date" name="fecha_evento" value="<?=$fecha_evento?>">
     </div>
     <div class="col m3 s6">
         <label for="">Resultado:</label>
@@ -57,8 +57,6 @@
 <script>
 
     var obj = <?=$resultado?>;
-
-    console.log(obj);
     
     $(document).ready(function(){
         $('#select').html('<select name="pronostico" class="select2" style="position: absolute;width: 100%;heigth:40px !important"><?=$pronosticos?></select>');

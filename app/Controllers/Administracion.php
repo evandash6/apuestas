@@ -146,14 +146,17 @@ class Administracion extends Controller{
         else{
             $data['titulo'] = 'Apuestas - Nueva';
             $data['resultado'] = json_encode(array());
-            $data['fecha_evento'] = date('Y-m-d');
+            if(isset($session->fecha_evento)){
+                $data['fecha_evento'] = $session->fecha_evento;
+            }
+            else{
+                $data['fecha_evento'] = date('Y-m-d');
+            }
+            
             $data['pronosticos'] = $this->api->post('crea_select',array('tabla'=>'vw_cpronosticos','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         }
         $data['icono'] = 'developer_board';
         $data['m_apu'] = 'active';
-        if(isset($session->fecha_evento)){
-            $data['fecha_evento'] = $session->fecha_evento;
-        }       
 
         $data['canal_id']  = (isset($session->canal_id))?$session->canal_id:'';
         $data['tipo'] = $tipo;
@@ -169,7 +172,6 @@ class Administracion extends Controller{
         $session = session();
         $session->set('fecha_evento',$_POST['fecha_evento']);
         $session->set('canal_id',$_POST['canal_id']);
-        $session->set('deportes_id',$_POST['deportes_id']);
         $_POST['pronostico'] = strtolower($_POST['pronostico']);
         if($_POST['id'] != ''){
             echo $this->api->post('actualizar/apuestas',array('datos'=>$_POST,'condicion[id]'=>$_POST['id']))->response;
