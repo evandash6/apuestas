@@ -57,6 +57,8 @@
 <script>
 
     var obj = <?=$resultado?>;
+
+    console.log(obj);
     
     $(document).ready(function(){
         $('#select').html('<select name="pronostico" class="select2" style="position: absolute;width: 100%;heigth:40px !important"><?=$pronosticos?></select>');
@@ -67,7 +69,6 @@
     if(Object.keys(obj).length > 0){
         $('input').each(function(index, element) {
             let nombre = $(this).attr('name');
-            console.log(nombre+':'+obj[nombre])
             $(this).val(obj[nombre])
         });
 
@@ -83,7 +84,6 @@
     }
     else{
         $('select[name=canal_id]').val(<?=$canal_id?>);
-        $('select[name=deportes_id]').val(<?=$deportes_id?>);
     }
     
 

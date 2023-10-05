@@ -141,23 +141,24 @@ class Administracion extends Controller{
             $data['titulo'] = 'Apuestas - Edición';
             $data['resultado'] = json_encode(json_decode($this->api->post('consulta_tabla',array('tabla'=>'apuestas','condicion[id]'=>$id))->response,true)['resultado'][0]);
             $data['fecha_evento'] = json_decode($data['resultado'],true)['fecha_evento'];
+            $data['pronosticos'] = $this->api->post('crea_select',array('tabla'=>'vw_cpronosticos','id'=>json_decode($data['resultado'],true)['pronostico'],'condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         }
         else{
             $data['titulo'] = 'Apuestas - Nueva';
             $data['resultado'] = json_encode(array());
             $data['fecha_evento'] = date('Y-m-d');
+            $data['pronosticos'] = $this->api->post('crea_select',array('tabla'=>'vw_cpronosticos','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         }
         $data['icono'] = 'developer_board';
         $data['m_apu'] = 'active';
         if(isset($session->fecha_evento)){
             $data['fecha_evento'] = $session->fecha_evento;
         }       
+
         $data['canal_id']  = (isset($session->canal_id))?$session->canal_id:'';
-        $data['deportes_id']  = (isset($session->deportes_id))?$session->deportes_id:'';
         $data['tipo'] = $tipo;
-        $data['deportes_opc'] = $this->api->post('crea_select',array('tabla'=>'deportes','condicion'=>'1=1 ORDER BY id'))['opciones'];
         $data['canales_opc'] = $this->api->post('crea_select',array('tabla'=>'canales','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
-        $data['pronosticos'] = $this->api->post('crea_select',array('tabla'=>'vw_cpronosticos','condicion'=>'1=1 ORDER BY nombre'))['opciones'];
+        
         echo view("header",$data);
         echo view("administracion/edicion_apuesta");
         echo view("funciones");
