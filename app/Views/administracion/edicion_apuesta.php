@@ -9,13 +9,17 @@
     </div>
 </div>
 <div class="row mt-2">
-    <div class="col m6 s6">
+    <div class="col m5 s5">
         <label for="">Canal:</label>
         <select name="canal_id" required><?=$canales_opc?></select>
     </div>
-    <div class="col m6 s5">
+    <div class="col m5 s5">
         <label for="">Pronostico:</label>
         <div id="select"></div>
+    </div>
+    <div class="col m2 s2">
+        <label for="">% acierto pronostico:</label>
+        <input type="text" class="text-center" readonly name="porcentaje">
     </div>
 </div>
 <div class="row mt-2">
@@ -83,6 +87,15 @@
     else{
         $('select[name=canal_id]').val(<?=$canal_id?>);
     }
+
+    $('body').on('change','select[name=pronostico]',function(){
+        let pronostico = $('select[name=pronostico]').val();
+        let canal = $('select[name=canal_id ]').val();
+        api.get('<?=base_url()?>administracion/porcentaje/'+canal+'/'+pronostico)
+        .done(function(res){
+            $('input[name=porcentaje]').val(res)
+        })        
+    })
     
 
     $('body').on('click','.btx_save',function(e){
@@ -92,7 +105,8 @@
             forms[0].classList.add('was-validated');
         }
         else{
-            let formData = new FormData(forms[0]);            
+            let formData = new FormData(forms[0]);         
+            formData.append('pronostico_nombre',$('select[name=pronostico] option:selected').text());   
             api.post('<?=base_url()?>/administracion/save_apuesta',formData,true)
             .done(function(data){
                 let res = JSON.parse(data);

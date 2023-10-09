@@ -141,7 +141,7 @@ class Administracion extends Controller{
             $data['titulo'] = 'Apuestas - Edición';
             $data['resultado'] = json_encode(json_decode($this->api->post('consulta_tabla',array('tabla'=>'apuestas','condicion[id]'=>$id))->response,true)['resultado'][0]);
             $data['fecha_evento'] = json_decode($data['resultado'],true)['fecha_evento'];
-            $data['pronosticos'] = $this->api->post('crea_select',array('tabla'=>'vw_cpronosticos','id'=>json_decode($data['resultado'],true)['pronostico'],'condicion'=>'1=1 ORDER BY nombre'))['opciones'];
+            $data['pronosticos'] = $this->api->post('crea_select',array('tabla'=>'vw_cpronosticos','campos'=>'nombre as id, nombre as nombre','id'=>json_decode($data['resultado'],true)['pronostico'],'condicion'=>'1=1 ORDER BY nombre'))['opciones'];
         }
         else{
             $data['titulo'] = 'Apuestas - Nueva';
@@ -169,7 +169,10 @@ class Administracion extends Controller{
     }
 
     public function save_apuesta(){
+        $_POST['pronostico'] = $_POST['pronostico_nombre'];
+        unset($_POST['pronostico_nombre']);
         $session = session();
+        $_POST['mes'] = date("m", strtotime($_POST['fecha_evento']));
         $session->set('fecha_evento',$_POST['fecha_evento']);
         $session->set('canal_id',$_POST['canal_id']);
         $_POST['pronostico'] = strtolower($_POST['pronostico']);
@@ -202,5 +205,15 @@ class Administracion extends Controller{
 
     public function estadistica($tabla){
         echo $this->api->post('query',array('query'=>'SELECT * FROM '.$tabla))->response;
+    }
+
+    public function porcentaje($canal_id,$pronostico_id){
+        $res = json_decode($this->api->post('query',array('query'=>'SELECT * FROM vw_porcentajes WHERE canal_id="'.$canal_id.'" AND pronostico_id = "'.$pronostico_id.'" '))->response,true);
+        if($res['totalregistros']>0){
+            echo $res['resultado'][0]['aciertos'];
+        }
+        else{
+            echo 0;
+        }
     }
 }
