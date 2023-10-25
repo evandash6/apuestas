@@ -14,7 +14,11 @@
             <option value="vw_porcentajes">Porcentajes</option>
         </select>
     </div>
-    <div class="col m8 text-right">
+    <div class="col m4">
+        <label for="">Filtro de consulta:</label>
+        <input type="text" name="consulta">
+    </div>
+    <div class="col m4 text-right mt-3">
         <button type="button" onclick="actualizar_tabla()" class="btn teal">Actualizar Datos</button>
     </div>
 </div>
@@ -31,7 +35,8 @@
     // var obj= '[{canal:2,id:34,stake:4},{canal:22,id:334,stake:5}]';
 
     function actualizar_tabla(){
-        api.get('<?=base_url()?>administracion/estadistica/'+tabla)
+        let consulta = ($('input[name=consulta]').val() != '')?$('input[name=consulta]').val():'';
+        api.get('<?=base_url()?>administracion/estadistica/'+tabla+'/'+consulta)
         .done(function(res){
             obj = JSON.parse(res).resultado
             console.log(obj);

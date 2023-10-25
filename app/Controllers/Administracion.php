@@ -203,8 +203,8 @@ class Administracion extends Controller{
         echo view("footer");
     }
 
-    public function estadistica($tabla){
-        echo $this->api->post('query',array('query'=>'SELECT * FROM '.$tabla))->response;
+    public function estadistica($tabla,$consulta='1=1'){
+        echo $this->api->post('query',array('query'=>'SELECT * FROM '.$tabla.' WHERE '.$consulta))->response;
     }
 
     public function porcentaje($canal_id,$pronostico_id){
